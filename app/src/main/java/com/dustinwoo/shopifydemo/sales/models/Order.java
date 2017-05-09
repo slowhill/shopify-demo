@@ -1,4 +1,4 @@
-package com.dustinwoo.shopifydemo.models;
+package com.dustinwoo.shopifydemo.sales.models;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,9 +1,10 @@
-package com.dustinwoo.shopifydemo;
+package com.dustinwoo.shopifydemo.activities;
 
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.dustinwoo.shopifydemo.ShopifyDemoApplication;
 import com.dustinwoo.shopifydemo.dependencies.components.ApplicationComponent;
 
 public abstract class BaseActivity extends AppCompatActivity {

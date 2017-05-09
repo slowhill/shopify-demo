@@ -1,6 +1,6 @@
 package com.dustinwoo.shopifydemo.network;
 
-import com.dustinwoo.shopifydemo.models.Order;
+import com.dustinwoo.shopifydemo.sales.models.Order;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
