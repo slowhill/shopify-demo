@@ -1,24 +1,37 @@
 package com.dustinwoo.shopifydemo.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by dustin on 2017-05-08.
  */
 
 public class LineOrder {
 
+    @SerializedName("id")
     private int mId;
+    @SerializedName("variant_id")
     private int mVariantId;
+    @SerializedName("product_id")
     private int mProductId;
 
+    @SerializedName("title")
     private String mTitle;
+    @SerializedName("variant_title")
     private String mVariantTitle;
+    @SerializedName("name")
     private String mProductName;
 
+    @SerializedName("quantity")
     private int mQuantity;
+    @SerializedName("fulfillable_quantity")
     private int mFulfillableQuantity;
+    @SerializedName("price")
     private String mPrice;
+    @SerializedName("total_discount")
     private String mDiscountApplied;
 
+    @SerializedName("product_exists")
     private boolean mProductExists;
 
     public LineOrder(int id, int variantId, int productId,

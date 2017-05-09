@@ -1,5 +1,7 @@
 package com.dustinwoo.shopifydemo.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -8,15 +10,23 @@ import java.util.List;
 
 public class Order {
 
+    @SerializedName("id")
     private int mId;
+    @SerializedName("order_number")
     private int mOrderNumber;
+    @SerializedName("token")
     private String mToken;
 
+    @SerializedName("total_price")
     private String mTotalPrice;
+    @SerializedName("subtotal_price")
     private String mSubtotalPrice;
+    @SerializedName("total_price_usd")
     private String mUsdTotalPrice;
+    @SerializedName("currency")
     private String mCurrency;
 
+    @SerializedName("line_items")
     private List<LineOrder> mLineItems;
 
     public Order(int id, int orderNumber, String token, String totalPrice, String subtotalPrice, String usdTotalPrice, String currency, List<LineOrder> lineItems) {
