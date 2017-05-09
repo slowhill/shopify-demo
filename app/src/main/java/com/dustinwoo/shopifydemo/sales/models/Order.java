@@ -11,9 +11,9 @@ import java.util.List;
 public class Order {
 
     @SerializedName("id")
-    private int mId;
+    private long mId;
     @SerializedName("order_number")
-    private int mOrderNumber;
+    private long  mOrderNumber;
     @SerializedName("token")
     private String mToken;
 
@@ -29,7 +29,7 @@ public class Order {
     @SerializedName("line_items")
     private List<LineOrder> mLineItems;
 
-    public Order(int id, int orderNumber, String token, String totalPrice, String subtotalPrice, String usdTotalPrice, String currency, List<LineOrder> lineItems) {
+    public Order(long id, long orderNumber, String token, String totalPrice, String subtotalPrice, String usdTotalPrice, String currency, List<LineOrder> lineItems) {
         mId = id;
         mOrderNumber = orderNumber;
         mToken = token;
@@ -40,11 +40,11 @@ public class Order {
         mLineItems = lineItems;
     }
 
-    public int getId() {
+    public long getId() {
         return mId;
     }
 
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return mOrderNumber;
     }
 

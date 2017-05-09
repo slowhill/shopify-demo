@@ -9,11 +9,11 @@ import com.google.gson.annotations.SerializedName;
 public class LineOrder {
 
     @SerializedName("id")
-    private int mId;
+    private long mId;
     @SerializedName("variant_id")
-    private int mVariantId;
+    private long mVariantId;
     @SerializedName("product_id")
-    private int mProductId;
+    private long mProductId;
 
     @SerializedName("title")
     private String mTitle;
@@ -34,7 +34,7 @@ public class LineOrder {
     @SerializedName("product_exists")
     private boolean mProductExists;
 
-    public LineOrder(int id, int variantId, int productId,
+    public LineOrder(long id, long variantId, long productId,
                      String title, String variantTitle, String productName,
                      int quantity, int fulfillableQuantity,
                      String price, String discountApplied, boolean productExists) {
@@ -51,15 +51,15 @@ public class LineOrder {
         mProductExists = productExists;
     }
 
-    public int getId() {
+    public long getId() {
         return mId;
     }
 
-    public int getVariantId() {
+    public long getVariantId() {
         return mVariantId;
     }
 
-    public int getProductId() {
+    public long getProductId() {
         return mProductId;
     }
 
@@ -97,5 +97,22 @@ public class LineOrder {
 
     public boolean isProductExists() {
         return mProductExists;
+    }
+
+    @Override
+    public String toString() {
+        return "LineOrder{" +
+                "mId=" + mId +
+                ", mVariantId=" + mVariantId +
+                ", mProductId=" + mProductId +
+                ", mTitle='" + mTitle + '\'' +
+                ", mVariantTitle='" + mVariantTitle + '\'' +
+                ", mProductName='" + mProductName + '\'' +
+                ", mQuantity=" + mQuantity +
+                ", mFulfillableQuantity=" + mFulfillableQuantity +
+                ", mPrice='" + mPrice + '\'' +
+                ", mDiscountApplied='" + mDiscountApplied + '\'' +
+                ", mProductExists=" + mProductExists +
+                '}';
     }
 }

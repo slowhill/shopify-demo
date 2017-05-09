@@ -1,6 +1,6 @@
 package com.dustinwoo.shopifydemo.network;
 
-import com.dustinwoo.shopifydemo.sales.models.Order;
+import com.dustinwoo.shopifydemo.sales.models.OrderResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -13,5 +13,5 @@ import retrofit2.http.Query;
 public interface OrderService {
 
     @GET("admin/orders.json")
-    Observable<Order> orderList(@Query("page") int pageNum, @Query("access_token") String token);
+    Observable<OrderResponse> orderList(@Query("page") int pageNum, @Query("access_token") String token);
 }
