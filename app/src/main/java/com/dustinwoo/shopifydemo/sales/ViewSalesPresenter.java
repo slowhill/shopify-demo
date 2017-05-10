@@ -34,7 +34,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
     private int mOrdersPageNum;
 
     private List<Order> mOrders;
-    private double mTotalRevenue;
+    private double mTotalUsdRevenue;
     private int mNumKeyboardsSold;
 
     @Inject
@@ -70,26 +70,31 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
                 .subscribe(new Observer<Order>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-                        mView.showLoadingScreen(mTotalRevenue == 0 && mNumKeyboardsSold == 0);
+                        mView.showLoadingScreen(isFirstFetch());
                     }
 
                     @Override
                     public void onNext(@NonNull Order order) {
                         if (!mOrders.contains(order)) {
                             mOrders.add(order);
-                            mTotalRevenue += order.getTotalPrice();
+                            mTotalUsdRevenue += order.getUsdTotalPrice();
                             countSoldKeyboards(order);
                         }
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        mView.showErrorScreen();
+                        boolean hasFinishedPagination = e instanceof EmptyResponseException;
+                        if (hasFinishedPagination) {
+                            mView.enableLoadButton(false);
+                        }
+
+                        mView.showErrorScreen(hasFinishedPagination);
                     }
 
                     @Override
                     public void onComplete() {
-                        mView.showOrderDetails(mTotalRevenue, mNumKeyboardsSold);
+                        mView.showOrderDetails(mTotalUsdRevenue, mNumKeyboardsSold);
                     }
                 });
     }
@@ -104,5 +109,11 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
                 mNumKeyboardsSold += lineOrder.getQuantity();
             }
         }
+    }
+
+    private boolean isFirstFetch() {
+        return mTotalUsdRevenue == 0
+                && mNumKeyboardsSold == 0
+                && mRevenueMap.isEmpty();
     }
 }

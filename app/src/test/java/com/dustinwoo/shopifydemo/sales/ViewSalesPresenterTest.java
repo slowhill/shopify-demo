@@ -70,11 +70,12 @@ public class ViewSalesPresenterTest {
     }
 
     @Test
-    public void fetchOrdersInfo_emptyResponse_notifiesView_ErrorScreen() {
+    public void fetchOrdersInfo_emptyResponse_notifiesView_ErrorScreen_DisablesLoadButton() {
         setupErrorObservable();
 
         mSubject.fetchOrderInfo();
-        verify(mockView, times(1)).showErrorScreen();
+        verify(mockView, times(1)).enableLoadButton(false);
+        verify(mockView, times(1)).showErrorScreen(true);
     }
 
     @Test
@@ -83,7 +84,7 @@ public class ViewSalesPresenterTest {
 
         mSubject.fetchOrderInfo();
 
-        verify(mockView, times(1)).showOrderDetails(100D, 12);
+        verify(mockView, times(1)).showOrderDetails(80D, 12);
     }
 
     //============================================================
@@ -110,6 +111,7 @@ public class ViewSalesPresenterTest {
         when(randomLineOrder.getProductId()).thenReturn(1234L);
 
         when(order.getTotalPrice()).thenReturn(100D);
+        when(order.getUsdTotalPrice()).thenReturn(80D);
         when(order.getLineItems()).thenReturn(Arrays.asList(keyboardLineOrder, randomLineOrder));
 
         mOrderFetchObservable = Observable.just(order);
