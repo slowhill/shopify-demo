@@ -1,7 +1,6 @@
 package com.dustinwoo.shopifydemo;
 
 import android.app.Application;
-import android.support.annotation.VisibleForTesting;
 
 import com.dustinwoo.shopifydemo.dependencies.components.ApplicationComponent;
 import com.dustinwoo.shopifydemo.dependencies.components.DaggerApplicationComponent;
@@ -26,11 +25,10 @@ public class ShopifyDemoApplication extends Application {
     }
 
     //============================================================
-    // Protected Methods
+    // Private Methods
     //============================================================
 
-    @VisibleForTesting
-    protected ApplicationComponent buildApplicationComponent() {
+    private ApplicationComponent buildApplicationComponent() {
         return DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
