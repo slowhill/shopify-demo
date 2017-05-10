@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.dustinwoo.shopifydemo">
 
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- FIXME: permission approval on sdk? -->
+
     <application
         android:name=".ShopifyDemoApplication"
         android:allowBackup="true"

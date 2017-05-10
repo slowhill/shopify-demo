@@ -12,7 +12,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Scheduler;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Function;
 
 /**
@@ -25,21 +24,11 @@ public class OrdersManager {
 
     private OrderService mOrderService;
     private Scheduler mIoScheduler;
-    private int mPageNum;
 
     @Inject
     public OrdersManager(OrderService orderService, @Named("io") Scheduler ioScheduler) {
-        this(orderService, ioScheduler, 1);
-    }
-
-    public OrdersManager(OrderService orderService, Scheduler ioScheduler, int pageNum) {
         mOrderService = orderService;
         mIoScheduler = ioScheduler;
-        mPageNum = pageNum;
-    }
-
-    public Observable<Order> fetchOrders() {
-        return fetchOrders(mPageNum);
     }
 
     public Observable<Order> fetchOrders(final int pageNum) {
@@ -52,12 +41,6 @@ public class OrdersManager {
                         }
 
                         return Observable.fromIterable(orderResponse.getOrderList());
-                    }
-                }).doOnComplete(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mPageNum = pageNum;
-                        mPageNum += 1; //Increment to fetch next list
                     }
                 }).subscribeOn(mIoScheduler);
     }

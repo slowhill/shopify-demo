@@ -9,7 +9,6 @@ import com.dustinwoo.shopifydemo.sales.models.OrderResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -21,13 +20,9 @@ import io.reactivex.Scheduler;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -37,7 +32,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class OrdersManagerTest {
 
-    private static final int DEFAULT_PAGE_NUM = 1;
+    private static final int ORDERS_FIRST_PAGE_INDEX = 1;
 
     @Mock private OrderService mockOrderService;
     private Scheduler mTrampolineScheduler = Schedulers.trampoline();
@@ -57,20 +52,10 @@ public class OrdersManagerTest {
     }
 
     @Test
-    public void initialization_firstCallToFetch_calledWithDefaultPageNum() {
-        when(mockOrderService.orderList(anyInt(), anyString())).thenReturn(Observable.just(mock(OrderResponse.class)));
-        ArgumentCaptor<Integer> intArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
-
-        mSubject.fetchOrders();
-        verify(mockOrderService).orderList(intArgumentCaptor.capture(), any(String.class));
-        assertThat(intArgumentCaptor.getValue()).isEqualTo(DEFAULT_PAGE_NUM);
-    }
-
-    @Test
     public void fetchOrders_hasMultipleOrders_emitsResponseOrdersIndividiaully() {
         setupResponseWithMultipleOrders();
 
-        TestObserver<Order> orderTestObserver = mSubject.fetchOrders().test();
+        TestObserver<Order> orderTestObserver = mSubject.fetchOrders(ORDERS_FIRST_PAGE_INDEX).test();
         orderTestObserver.assertNoErrors();
         orderTestObserver.assertComplete();
         orderTestObserver.assertValueCount(3);
@@ -81,25 +66,9 @@ public class OrdersManagerTest {
     public void fetchOrders_hasNoOrders_throwsEmptyResponseException() {
         setupResponseWithNoOrders();
 
-        TestObserver<Order> orderTestObserver = mSubject.fetchOrders().test();
+        TestObserver<Order> orderTestObserver = mSubject.fetchOrders(ORDERS_FIRST_PAGE_INDEX).test();
         orderTestObserver.assertError(EmptyResponseException.class);
         orderTestObserver.assertNotComplete();
-    }
-
-    @Test
-    public void fetchOrders_initialCallCompleted_secondCall_makesRequestForSecondPage() {
-        setupResponseWithMultipleOrders();
-        ArgumentCaptor<Integer> intArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
-
-        TestObserver<Order> orderTestObserver = mSubject.fetchOrders().test();
-        orderTestObserver.assertComplete();
-
-        mSubject.fetchOrders();
-
-        verify(mockOrderService, times(2)).orderList(intArgumentCaptor.capture(), any(String.class));
-        assertThat(intArgumentCaptor.getAllValues().get(0)).isEqualTo(DEFAULT_PAGE_NUM);
-        assertThat(intArgumentCaptor.getAllValues().get(1)).isEqualTo(DEFAULT_PAGE_NUM + 1);
-
     }
 
     //============================================================
