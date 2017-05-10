@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dustinwoo.shopifydemo.activities.BaseActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/shopify_demo_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/shopify_demo_revenue_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Revenue: 123456 (USD)"/>
+
+        <TextView
+            android:id="@+id/shopify_demo_keyboardsold_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Aerodynamic Cotton Keyboards Sold: 12345"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/shopify_demo_load_more_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/load_more_button"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/progressbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_black_alpha_55"
+        tools:visibility="gone">
+
+        <ProgressBar
+            style="@style/ShopifyDemoProgressBar"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+</FrameLayout>
