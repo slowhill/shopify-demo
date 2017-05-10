@@ -43,7 +43,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
         mOrdersManager = ordersManager;
         mOrdersPageNum = 1;
         mOrders = new ArrayList<>();
-        mTotalRevenue = 0D;
+        mTotalUsdRevenue = 0D;
         mNumKeyboardsSold = 0;
     }
 
