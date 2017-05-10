@@ -21,8 +21,10 @@ import butterknife.OnClick;
 
 public class ViewSalesActivity extends BaseActivity implements ViewSalesContract.View {
 
-    @BindView(R.id.shopify_demo_revenue_textview)
-    TextView mRevenueTextView;
+    @BindView(R.id.shopify_demo_usd_revenue_textview)
+    TextView mUsdRevenueTextView;
+    @BindView(R.id.shopify_demo_cad_revenue_textview)
+    TextView mCadRevenueTextView;
     @BindView(R.id.shopify_demo_keyboardsold_textview)
     TextView mKeyboardsSoldTextView;
     @BindView(R.id.progressbar_container)
@@ -62,8 +64,9 @@ public class ViewSalesActivity extends BaseActivity implements ViewSalesContract
 
 
     @Override
-    public void showOrderDetails(double totalRevenue, int numKeyboardsSold) {
-        mRevenueTextView.setText(getResources().getString(R.string.revenue_in_usd, totalRevenue));
+    public void showOrderDetails(double totalUsdRevenue, double totalRevenue, int numKeyboardsSold) {
+        mUsdRevenueTextView.setText(getString(R.string.revenue_in_currency, getString(R.string.curr_code_usd), totalUsdRevenue));
+        mCadRevenueTextView.setText(getString(R.string.revenue_in_currency, getString(R.string.curr_code_cad), totalRevenue));
         mKeyboardsSoldTextView.setText(getResources().getString(R.string.keyboards_sold, numKeyboardsSold));
 
         mProgressBarContainer.setVisibility(View.GONE);
@@ -94,7 +97,7 @@ public class ViewSalesActivity extends BaseActivity implements ViewSalesContract
     //============================================================
 
     @OnClick(R.id.shopify_demo_load_more_button)
-    protected void onLoadMoreButtonClicked(View v) {
+    protected void onLoadMoreButtonClicked() {
         mPresenter.fetchOrderInfo();
     }
 }

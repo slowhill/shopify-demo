@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Shopify Merchant Demo</string>
-    <string name="revenue_in_usd">Revenue: $%.2f USD</string>
+    <string name="revenue_in_currency">Revenue (%1$s): $%2$.2f</string>
     <string name="keyboards_sold">Aerodynamic Cotton Keyboards Sold: %d</string>
     <string name="load_more_button">Load More Orders</string>
+
+    <string name="curr_code_usd">USD</string>
+    <string name="curr_code_cad">CAD</string>
 
     <string name="fetch_error_generic_message">Could not fetch your orders at this time. Please try again.</string>
     <string name="fetch_error_empty_message">No more orders are on record.</string>

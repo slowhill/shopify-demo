@@ -99,20 +99,48 @@ public class LineOrder {
         return mProductExists;
     }
 
+    //============================================================
+    // Generated Code
+    //============================================================
+
     @Override
-    public String toString() {
-        return "LineOrder{" +
-                "mId=" + mId +
-                ", mVariantId=" + mVariantId +
-                ", mProductId=" + mProductId +
-                ", mTitle='" + mTitle + '\'' +
-                ", mVariantTitle='" + mVariantTitle + '\'' +
-                ", mProductName='" + mProductName + '\'' +
-                ", mQuantity=" + mQuantity +
-                ", mFulfillableQuantity=" + mFulfillableQuantity +
-                ", mPrice='" + mPrice + '\'' +
-                ", mDiscountApplied='" + mDiscountApplied + '\'' +
-                ", mProductExists=" + mProductExists +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LineOrder lineOrder = (LineOrder) o;
+
+        if (mId != lineOrder.mId) return false;
+        if (mVariantId != lineOrder.mVariantId) return false;
+        if (mProductId != lineOrder.mProductId) return false;
+        if (mQuantity != lineOrder.mQuantity) return false;
+        if (mFulfillableQuantity != lineOrder.mFulfillableQuantity) return false;
+        if (mProductExists != lineOrder.mProductExists) return false;
+        if (mTitle != null ? !mTitle.equals(lineOrder.mTitle) : lineOrder.mTitle != null)
+            return false;
+        if (mVariantTitle != null ? !mVariantTitle.equals(lineOrder.mVariantTitle) : lineOrder.mVariantTitle != null)
+            return false;
+        if (mProductName != null ? !mProductName.equals(lineOrder.mProductName) : lineOrder.mProductName != null)
+            return false;
+        if (mPrice != null ? !mPrice.equals(lineOrder.mPrice) : lineOrder.mPrice != null)
+            return false;
+        return mDiscountApplied != null ? mDiscountApplied.equals(lineOrder.mDiscountApplied) : lineOrder.mDiscountApplied == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (mId ^ (mId >>> 32));
+        result = 31 * result + (int) (mVariantId ^ (mVariantId >>> 32));
+        result = 31 * result + (int) (mProductId ^ (mProductId >>> 32));
+        result = 31 * result + (mTitle != null ? mTitle.hashCode() : 0);
+        result = 31 * result + (mVariantTitle != null ? mVariantTitle.hashCode() : 0);
+        result = 31 * result + (mProductName != null ? mProductName.hashCode() : 0);
+        result = 31 * result + mQuantity;
+        result = 31 * result + mFulfillableQuantity;
+        result = 31 * result + (mPrice != null ? mPrice.hashCode() : 0);
+        result = 31 * result + (mDiscountApplied != null ? mDiscountApplied.hashCode() : 0);
+        result = 31 * result + (mProductExists ? 1 : 0);
+        return result;
     }
 }

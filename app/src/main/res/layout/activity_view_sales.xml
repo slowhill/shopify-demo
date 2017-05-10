@@ -18,7 +18,7 @@
         tools:visibility="visible">
 
         <TextView
-            android:id="@+id/shopify_demo_revenue_textview"
+            android:id="@+id/shopify_demo_usd_revenue_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -26,7 +26,18 @@
             android:paddingLeft="@dimen/textview_margin_horizontal"
             android:paddingRight="@dimen/textview_margin_horizontal"
             android:paddingTop="@dimen/textview_margin_vertical"
-            tools:text="Revenue: 123456 (USD)"/>
+            tools:text="Revenue (USD): $123456.00 "/>
+
+        <TextView
+            android:id="@+id/shopify_demo_cad_revenue_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/textview_margin_vertical"
+            android:paddingLeft="@dimen/textview_margin_horizontal"
+            android:paddingRight="@dimen/textview_margin_horizontal"
+            android:paddingTop="@dimen/textview_margin_vertical"
+            tools:text="Revenue (CAD): $123456.00"/>
 
         <TextView
             android:id="@+id/shopify_demo_keyboardsold_textview"

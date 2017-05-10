@@ -2,6 +2,7 @@ package com.dustinwoo.shopifydemo.sales;
 
 import android.support.annotation.NonNull;
 
+import com.dustinwoo.shopifydemo.exceptions.EmptyResponseException;
 import com.dustinwoo.shopifydemo.sales.models.LineOrder;
 import com.dustinwoo.shopifydemo.sales.models.Order;
 import com.dustinwoo.shopifydemo.utils.NoopInvocationHandler;
@@ -34,6 +35,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
     private int mOrdersPageNum;
 
     private List<Order> mOrders;
+    private double mTotalRevenue;
     private double mTotalUsdRevenue;
     private int mNumKeyboardsSold;
 
@@ -43,6 +45,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
         mOrdersManager = ordersManager;
         mOrdersPageNum = 1;
         mOrders = new ArrayList<>();
+        mTotalRevenue = 0D;
         mTotalUsdRevenue = 0D;
         mNumKeyboardsSold = 0;
     }
@@ -75,9 +78,10 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
 
                     @Override
                     public void onNext(@NonNull Order order) {
-                        if (!mOrders.contains(order)) {
+                        if (!mOrders.contains(order)) { //Avoid double counting
                             mOrders.add(order);
                             mTotalUsdRevenue += order.getUsdTotalPrice();
+                            mTotalRevenue += order.getTotalPrice();
                             countSoldKeyboards(order);
                         }
                     }
@@ -94,7 +98,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
 
                     @Override
                     public void onComplete() {
-                        mView.showOrderDetails(mTotalUsdRevenue, mNumKeyboardsSold);
+                        mView.showOrderDetails(mTotalUsdRevenue, mTotalRevenue, mNumKeyboardsSold);
                     }
                 });
     }
@@ -113,7 +117,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
 
     private boolean isFirstFetch() {
         return mTotalUsdRevenue == 0
-                && mNumKeyboardsSold == 0
-                && mRevenueMap.isEmpty();
+                && mTotalRevenue == 0
+                && mNumKeyboardsSold == 0;
     }
 }

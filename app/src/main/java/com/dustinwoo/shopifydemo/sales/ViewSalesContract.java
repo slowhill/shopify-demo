@@ -10,7 +10,7 @@ import com.dustinwoo.shopifydemo.contracts.BaseView;
 public class ViewSalesContract {
 
     public interface View extends BaseView {
-        void showOrderDetails(double totalRevenue, int numKeyboardsSold);
+        void showOrderDetails(double totalUsdRevenue, double totalRevenue, int numKeyboardsSold);
         void showErrorScreen(boolean isEmptyResponse);
         void showLoadingScreen(boolean showOnlySpinner);
         void enableLoadButton(boolean isEnabled);
