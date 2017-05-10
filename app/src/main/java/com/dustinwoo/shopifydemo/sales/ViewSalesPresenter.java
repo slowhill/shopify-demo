@@ -101,7 +101,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
     private void countSoldKeyboards(Order order) {
         for (LineOrder lineOrder : order.getLineItems()) {
             if (lineOrder.getProductId() == COTTON_KEYBOARD_PRODUCT_ID) {
-                mNumKeyboardsSold += 1;
+                mNumKeyboardsSold += lineOrder.getQuantity();
             }
         }
     }

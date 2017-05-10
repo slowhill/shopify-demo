@@ -1,4 +1,4 @@
-package com.dustinwoo.shopifydemo.sales.sales;
+package com.dustinwoo.shopifydemo.sales;
 
 import com.dustinwoo.shopifydemo.exceptions.EmptyResponseException;
 import com.dustinwoo.shopifydemo.network.OrderService;

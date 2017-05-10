@@ -13,7 +13,7 @@ import java.lang.reflect.Proxy;
 
 public class NoopInvocationHandler<T> implements InvocationHandler {
 
-    Optional<T> mSubject;
+    private Optional<T> mSubject;
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

@@ -1,9 +1,6 @@
-package com.dustinwoo.shopifydemo.sales.sales;
+package com.dustinwoo.shopifydemo.sales;
 
 import com.dustinwoo.shopifydemo.exceptions.EmptyResponseException;
-import com.dustinwoo.shopifydemo.sales.OrdersManager;
-import com.dustinwoo.shopifydemo.sales.ViewSalesContract;
-import com.dustinwoo.shopifydemo.sales.ViewSalesPresenter;
 import com.dustinwoo.shopifydemo.sales.models.LineOrder;
 import com.dustinwoo.shopifydemo.sales.models.Order;
 
@@ -86,7 +83,7 @@ public class ViewSalesPresenterTest {
 
         mSubject.fetchOrderInfo();
 
-        verify(mockView, times(1)).showOrderDetails(100D, 1);
+        verify(mockView, times(1)).showOrderDetails(100D, 12);
     }
 
     //============================================================
@@ -109,6 +106,7 @@ public class ViewSalesPresenterTest {
         LineOrder randomLineOrder = mock(LineOrder.class);
 
         when(keyboardLineOrder.getProductId()).thenReturn(KEYBOARD_PRODUCT_ID);
+        when(keyboardLineOrder.getQuantity()).thenReturn(12);
         when(randomLineOrder.getProductId()).thenReturn(1234L);
 
         when(order.getTotalPrice()).thenReturn(100D);
