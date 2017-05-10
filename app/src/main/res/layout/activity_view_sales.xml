@@ -9,20 +9,34 @@
         android:id="@+id/shopify_demo_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="vertical"
         android:visibility="gone"
         tools:visibility="visible">
 
         <TextView
             android:id="@+id/shopify_demo_revenue_textview"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/textview_margin_vertical"
+            android:paddingLeft="@dimen/textview_margin_horizontal"
+            android:paddingRight="@dimen/textview_margin_horizontal"
+            android:paddingTop="@dimen/textview_margin_vertical"
             tools:text="Revenue: 123456 (USD)"/>
 
         <TextView
             android:id="@+id/shopify_demo_keyboardsold_textview"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/textview_margin_vertical"
+            android:paddingLeft="@dimen/textview_margin_horizontal"
+            android:paddingRight="@dimen/textview_margin_horizontal"
+            android:paddingTop="@dimen/textview_margin_vertical"
             tools:text="Aerodynamic Cotton Keyboards Sold: 12345"/>
 
         <Space
@@ -36,6 +50,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingBottom="@dimen/button_margin_vertical"
+            android:paddingLeft="@dimen/button_margin_horizontal"
+            android:paddingRight="@dimen/button_margin_horizontal"
+            android:paddingTop="@dimen/button_margin_vertical"
             android:text="@string/load_more_button"/>
 
     </LinearLayout>
