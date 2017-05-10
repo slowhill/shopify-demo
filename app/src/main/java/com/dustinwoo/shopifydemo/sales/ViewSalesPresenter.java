@@ -89,8 +89,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
 
                     @Override
                     public void onComplete() {
-                        mView.showRevenueEarned(mTotalRevenue);
-                        mView.showKeyboardsSold(mNumKeyboardsSold);
+                        mView.showOrderDetails(mTotalRevenue, mNumKeyboardsSold);
                     }
                 });
     }

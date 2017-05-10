@@ -31,7 +31,7 @@ public class OrdersManager {
         mIoScheduler = ioScheduler;
     }
 
-    public Observable<Order> fetchOrders(final int pageNum) {
+    public Observable<Order> fetchOrders(int pageNum) {
         return mOrderService.orderList(pageNum, ACCESS_TOKEN)
                 .flatMap(new Function<OrderResponse, ObservableSource<Order>>() {
                     @Override

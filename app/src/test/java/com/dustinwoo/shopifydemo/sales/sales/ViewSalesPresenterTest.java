@@ -86,8 +86,7 @@ public class ViewSalesPresenterTest {
 
         mSubject.fetchOrderInfo();
 
-        verify(mockView, times(1)).showRevenueEarned(100D);
-        verify(mockView, times(1)).showKeyboardsSold(1);
+        verify(mockView, times(1)).showOrderDetails(100D, 1);
     }
 
     //============================================================
