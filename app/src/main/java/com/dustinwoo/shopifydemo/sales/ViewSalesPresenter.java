@@ -83,7 +83,7 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
                     }
 
                     @Override
-                    public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         mView.showErrorScreen();
                     }
 
