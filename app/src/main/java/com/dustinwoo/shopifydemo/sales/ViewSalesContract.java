@@ -11,7 +11,8 @@ public class ViewSalesContract {
 
     public interface View extends BaseView {
         void showOrderDetails(double totalUsdRevenue, double totalRevenue, int numKeyboardsSold);
-        void showErrorScreen(boolean isEmptyResponse);
+        void showErrorToast(boolean hasFinishedPagination);
+        void showErrorScreen(boolean isFirstFetch);
         void showLoadingScreen(boolean showOnlySpinner);
         void enableLoadButton(boolean isEnabled);
     }

@@ -93,7 +93,8 @@ public class ViewSalesPresenter implements ViewSalesContract.Presenter {
                             mView.enableLoadButton(false);
                         }
 
-                        mView.showErrorScreen(hasFinishedPagination);
+                        mView.showErrorToast(hasFinishedPagination);
+                        mView.showErrorScreen(isFirstFetch());
                     }
 
                     @Override

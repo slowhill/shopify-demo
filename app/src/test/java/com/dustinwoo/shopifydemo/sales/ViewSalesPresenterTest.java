@@ -70,12 +70,31 @@ public class ViewSalesPresenterTest {
     }
 
     @Test
-    public void fetchOrdersInfo_emptyResponse_notifiesView_ErrorScreen_DisablesLoadButton() {
+    public void fetchOrdersInfo_emptyResponse_notifiesView_ErrorToast_DisablesLoadButton() {
         setupErrorObservable();
 
         mSubject.fetchOrderInfo();
         verify(mockView, times(1)).enableLoadButton(false);
+        verify(mockView, times(1)).showErrorToast(true);
+        verify(mockView, times(1)).showErrorScreen(anyBoolean());
+    }
+
+    @Test
+    public void fetchOrdersInfo_emptyResponse_onFirstTry_notifiesView_isFirstFetch() {
+        setupErrorObservable();
+
+        mSubject.fetchOrderInfo();
         verify(mockView, times(1)).showErrorScreen(true);
+    }
+
+    @Test
+    public void fetchOrdersInfo_emptyResponse_afterSuccessfulCall_notifiesView_isNotFirstFetch() {
+        setupValidObservable();
+        mSubject.fetchOrderInfo();
+
+        setupErrorObservable();
+        mSubject.fetchOrderInfo();
+        verify(mockView, times(1)).showErrorScreen(false);
     }
 
     @Test
@@ -84,7 +103,7 @@ public class ViewSalesPresenterTest {
 
         mSubject.fetchOrderInfo();
 
-        verify(mockView, times(1)).showOrderDetails(80D, 12);
+        verify(mockView, times(1)).showOrderDetails(80D, 100D, 12);
     }
 
     //============================================================
