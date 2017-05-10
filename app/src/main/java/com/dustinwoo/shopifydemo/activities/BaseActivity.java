@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.dustinwoo.shopifydemo.ShopifyDemoApplication;
 import com.dustinwoo.shopifydemo.dependencies.components.ApplicationComponent;
+import com.dustinwoo.shopifydemo.dependencies.components.PresenterComponent;
+import com.dustinwoo.shopifydemo.dependencies.modules.PresenterModule;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -20,5 +22,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected ApplicationComponent getApplicationComponent() {
         return ((ShopifyDemoApplication) getApplication()).getApplicationComponent();
+    }
+
+    protected PresenterComponent getPresenterComponent() {
+        return getApplicationComponent()
+                .newPresenterCompoonentBuilder()
+                .presenterModule(new PresenterModule())
+                .build();
     }
 }

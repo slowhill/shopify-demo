@@ -3,6 +3,7 @@ package com.dustinwoo.shopifydemo.dependencies.modules;
 import android.content.Context;
 
 import com.dustinwoo.shopifydemo.ShopifyDemoApplication;
+import com.dustinwoo.shopifydemo.dependencies.components.PresenterComponent;
 
 import dagger.Module;
 import dagger.Provides;
@@ -11,7 +12,8 @@ import dagger.Provides;
  * Created by dustin on 2017-05-08.
  */
 
-@Module
+@Module(subcomponents = {
+        PresenterComponent.class})
 public class ApplicationModule {
 
     private ShopifyDemoApplication mApplication;

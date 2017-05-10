@@ -1,6 +1,5 @@
 package com.dustinwoo.shopifydemo.dependencies.components;
 
-import com.dustinwoo.shopifydemo.ShopifyDemoApplication;
 import com.dustinwoo.shopifydemo.dependencies.modules.ApplicationModule;
 import com.dustinwoo.shopifydemo.dependencies.modules.NetworkModule;
 import com.dustinwoo.shopifydemo.dependencies.modules.SchedulerModule;
@@ -18,5 +17,6 @@ import dagger.Component;
         NetworkModule.class,
         SchedulerModule.class })
 public interface ApplicationComponent {
-    void inject(ShopifyDemoApplication application);
+
+    PresenterComponent.Builder newPresenterCompoonentBuilder();
 }
