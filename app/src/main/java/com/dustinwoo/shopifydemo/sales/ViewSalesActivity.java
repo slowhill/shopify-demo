@@ -31,6 +31,8 @@ public class ViewSalesActivity extends BaseActivity implements ViewSalesContract
     View mProgressBarContainer;
     @BindView(R.id.shopify_demo_view_container)
     View mContentViewContainer;
+    @BindView(R.id.error_container_view)
+    View mErrorContainerView;
     @BindView(R.id.shopify_demo_load_more_button)
     Button mLoadMoreButton;
 
@@ -70,20 +72,30 @@ public class ViewSalesActivity extends BaseActivity implements ViewSalesContract
         mKeyboardsSoldTextView.setText(getResources().getString(R.string.keyboards_sold, numKeyboardsSold));
 
         mProgressBarContainer.setVisibility(View.GONE);
+        mErrorContainerView.setVisibility(View.GONE);
         mContentViewContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showErrorScreen(boolean isEmptyResponse) {
-        mProgressBarContainer.setVisibility(View.GONE);
+    public void showErrorToast(boolean hasFinishedPagination) {
         Toast.makeText(this,
-                isEmptyResponse ? R.string.fetch_error_empty_message : R.string.fetch_error_generic_message,
+                hasFinishedPagination ? R.string.fetch_error_empty_message : R.string.fetch_error_generic_message,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorScreen(boolean isFirstFetch) {
+        mProgressBarContainer.setVisibility(View.GONE);
+        if (isFirstFetch) {
+            mContentViewContainer.setVisibility(View.GONE);
+            mErrorContainerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void showLoadingScreen(boolean showOnlySpinner) {
         mProgressBarContainer.setVisibility(View.VISIBLE);
+        mErrorContainerView.setVisibility(View.GONE);
         mContentViewContainer.setVisibility(showOnlySpinner ? View.GONE : View.VISIBLE);
     }
 
@@ -96,7 +108,7 @@ public class ViewSalesActivity extends BaseActivity implements ViewSalesContract
     // Click Events
     //============================================================
 
-    @OnClick(R.id.shopify_demo_load_more_button)
+    @OnClick({R.id.shopify_demo_load_more_button, R.id.shopify_demo_try_again_button})
     protected void onLoadMoreButtonClicked() {
         mPresenter.fetchOrderInfo();
     }

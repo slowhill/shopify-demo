@@ -5,6 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/error_container_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/shopify_demo_try_again_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/textview_margin_vertical"
+            android:paddingLeft="@dimen/textview_margin_horizontal"
+            android:paddingRight="@dimen/textview_margin_horizontal"
+            android:paddingTop="@dimen/textview_margin_vertical"
+            android:text="@string/try_again_header_text"/>
+
+        <Button
+            android:layout_marginTop="@dimen/button_margin_vertical"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/shopify_demo_try_again_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shopify_demo_try_again_text"
+            android:paddingBottom="@dimen/button_margin_vertical"
+            android:paddingLeft="@dimen/button_margin_horizontal"
+            android:paddingRight="@dimen/button_margin_horizontal"
+            android:paddingTop="@dimen/button_margin_vertical"
+            android:text="@string/try_again"/>
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/shopify_demo_view_container"
         android:layout_width="match_parent"
@@ -15,7 +47,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="vertical"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <TextView
             android:id="@+id/shopify_demo_usd_revenue_textview"

@@ -3,6 +3,8 @@
     <string name="revenue_in_currency">Revenue (%1$s): $%2$.2f</string>
     <string name="keyboards_sold">Aerodynamic Cotton Keyboards Sold: %d</string>
     <string name="load_more_button">Load More Orders</string>
+    <string name="try_again">Try Again</string>
+    <string name="try_again_header_text">We couldn\'t fetch your order information.</string>
 
     <string name="curr_code_usd">USD</string>
     <string name="curr_code_cad">CAD</string>
