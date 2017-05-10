@@ -1,7 +1,6 @@
 package com.dustinwoo.shopifydemo.sales;
 
 import com.dustinwoo.shopifydemo.contracts.BasePresenter;
-import com.dustinwoo.shopifydemo.contracts.BaseView;
 
 /**
  * Created by dustin on 2017-05-09.
@@ -9,7 +8,7 @@ import com.dustinwoo.shopifydemo.contracts.BaseView;
 
 public class ViewSalesContract {
 
-    public interface View extends BaseView {
+    public interface View {
         void showOrderDetails(double totalUsdRevenue, double totalRevenue, int numKeyboardsSold);
         void showErrorToast(boolean hasFinishedPagination);
         void showErrorScreen(boolean isFirstFetch);
